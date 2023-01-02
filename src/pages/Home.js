@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   TextInput,
   Platform,
+  FlatList,
 } from 'react-native';
 import Button from '../components/Button';
 import SkillCard from '../components/SkillCard';
@@ -28,9 +29,12 @@ export function Home() {
       />
       <Button onPress={handleAddNewSkill} />
       <Text style={styles.skillsTitle}>My Skills: </Text>
-      {mySkill.map(skill => (
-        <SkillCard skill={skill} />
-      ))}
+
+      <FlatList
+        data={mySkill}
+        keyExtractor={item => item}
+        renderItem={({item}) => <SkillCard skill={item} />}
+      />
     </SafeAreaView>
   );
 }
